@@ -24,7 +24,7 @@
   <b>Capacity:</b>
   <%= @flight.capacity %>
 </p>
-
+<%= render :partial=>"seat_list", :locals=>{:seats=>Seat.find_all_by_flight_id(@flight.id)}%>
 <%= render :partial=>"new_seat", :locals=>{:seat=>Seat.new(:flight_id=>@flight.id)}%>
 <%= link_to 'Edit', edit_flight_path(@flight) %> |
 <%= link_to 'Back', flights_path %>
