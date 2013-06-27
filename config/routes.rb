@@ -3,7 +3,7 @@ Coconut::Application.routes.draw do
 
 
   resources :flights
- match 'flights/:flights_id/seats' => 'seats#flight_seats'
+ match 'flights/:flight_id/seats' => 'seats#flight_seats'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

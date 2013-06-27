@@ -24,7 +24,17 @@
   <b>Capacity:</b>
   <%= @flight.capacity %>
 </p>
+<div id='seats'>
 <%= render :partial=>"seat_list", :locals=>{:seats=>@flight.seats}%>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("form#new_seat").bind("ajax:success",function(event,data,status,xhr){
+    $("#seats").html(data)
+  });
+  })
+</script>
+<%=link_to("Refresh seats", :url =>"/flights/#{@flight.id}/seats", :method=>'get', :update =>'seats', :remote=>true)%>
 <%= render :partial=>"new_seat", :locals=>{:seat=>Seat.new(:flight_id=>@flight.id)}%>
 <%= link_to 'Edit', edit_flight_path(@flight) %> |
 <%= link_to 'Back', flights_path %>

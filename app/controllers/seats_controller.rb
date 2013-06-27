@@ -80,4 +80,8 @@ class SeatsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def flight_seats
+    @flight = Flight.find(params[:flight_id])
+    render :partial => "flights/seat_list", :locals=>{:seats=>@flight.seats}
+  end
 end
